@@ -28,7 +28,7 @@ Manual resume screening doesn't scale — recruiters skim hundreds of resumes pe
 ### Student Mode — Resume Upload
 Candidates upload a single resume and get instant, personalized feedback.
 
-![Student Mode Upload](images/student-mode-upload.png)
+<img width="1710" height="1112" alt="student-mode-upload" src="https://github.com/user-attachments/assets/0b308afc-a15b-4869-932a-3adf3b5b1f80" />
 
 ### HR Mode — Job Requirements
 Recruiters upload multiple resumes at once and define the role's requirements (title, department, experience, education, required skills).
