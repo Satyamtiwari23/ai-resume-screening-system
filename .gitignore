@@ -28,3 +28,11 @@ reports/*
 
 # Logs
 *.log
+
+
+dataset/raw/
+dataset/cleaned/
+dataset/merged/
+
+model/bert_encoder.pkl
+model/bert_classifier.pkl
