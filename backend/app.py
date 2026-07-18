@@ -18,6 +18,11 @@ from utils.resume_analyzer import analyze_resume
 from utils.role_predictor import predict_role
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+print("=" * 50)
+print(BASE_DIR)
+print(os.path.exists(os.path.join(BASE_DIR, "frontend")))
+print(os.path.exists(os.path.join(BASE_DIR, "frontend", "templates", "index.html")))
+print("=" * 50)
 
 app = Flask(
     __name__,
