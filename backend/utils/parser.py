@@ -51,27 +51,45 @@ def extract_phone(text):
 
 
 def extract_name(text, filename):
-    print("USING NEW extract_name")
-    """
-    AI + Email + Filename based name extraction.
-    """
-
-    entities = ai_entities(text)
 
     blacklist = {
         "resume",
         "curriculum vitae",
-        "food technologist",
-        "software engineer",
-        "developer",
-        "engineer",
-        "experience",
-        "education",
-        "skills",
         "profile",
         "summary",
-        "objective"
+        "objective",
+        "education",
+        "experience",
+        "skills",
+        "projects",
+        "certifications",
+        "achievements",
+        "software engineer",
+        "developer",
+        "engineer"
     }
+
+    invalid_words = {
+        "school",
+        "college",
+        "university",
+        "institute",
+        "building",
+        "road",
+        "street",
+        "nagar",
+        "city",
+        "district",
+        "state",
+        "india",
+        "public",
+        "private",
+        "government",
+        "vidyalaya",
+        "jawahar",
+        "navodaya"
+    }
+
     job_words = {
         "developer",
         "engineer",
@@ -79,76 +97,66 @@ def extract_name(text, filename):
         "analyst",
         "consultant",
         "designer",
-        "specialist",
-        "technologist",
-        "intern",
         "executive",
-        "student"
+        "intern",
+        "student",
+        "technologist",
+        "specialist"
     }
 
-    # -----------------------
-    # 1. spaCy PERSON
-    # -----------------------
-    for person in entities["person"]:
+    # ====================================================
+    # STEP 1
+    # Search only first 8 non-empty lines
+    # ====================================================
 
-        person = person.strip()
-    
-        words = person.split()
-    
-        if len(words) < 2 or len(words) > 4:
-            continue
-    
-        if any(ch.isdigit() for ch in person):
-            continue
-    
-        if person.lower() in blacklist:
-            continue
-    
-        # Reject all-uppercase non-name headings
-        if person.isupper() and len(words) > 3:
-            continue
-    
-        if any(word.lower() in job_words for word in words):
-            continue
-    
-        return person.title()
-    
     lines = [
         line.strip()
         for line in text.splitlines()
         if line.strip()
     ]
-    
-    for line in lines[:10]:
-    
+
+    for line in lines[:8]:
+
         words = line.split()
-    
+
         if len(words) < 2 or len(words) > 4:
             continue
-    
-        if any(ch.isdigit() for ch in line):
+
+        if any(char.isdigit() for char in line):
             continue
-    
+
         lower = line.lower()
-    
+
         if lower in blacklist:
             continue
-    
-        if any(word.lower() in job_words for word in words):
+
+        if any(w.lower() in job_words for w in words):
             continue
-    
+
+        if any(w.lower() in invalid_words for w in words):
+            continue
+
+        if not all(word.replace(".", "").isalpha() for word in words):
+            continue
+
         return line.title()
-    
-    # -----------------------
-    # 3. Email username
-    # -----------------------
+
+    # ====================================================
+    # STEP 2
+    # Email username
+    # ====================================================
+
     email = extract_email(text)
 
     if email != "Not Found":
 
         username = email.split("@")[0]
 
-        username = re.sub(r"[0-9._-]+", " ", username)
+        username = username.replace(".", " ")
+        username = username.replace("_", " ")
+        username = username.replace("-", " ")
+
+        username = re.sub(r"\d+", "", username)
 
         words = [
             w.capitalize()
@@ -156,16 +164,46 @@ def extract_name(text, filename):
             if len(w) > 1
         ]
 
-        if len(words) >= 2:
+        if 2 <= len(words) <= 4:
             return " ".join(words)
 
-    # -----------------------
-    # 4. Filename
-    # -----------------------
+    # ====================================================
+    # STEP 3
+    # spaCy fallback
+    # ====================================================
+
+    entities = ai_entities(text)
+
+    for person in entities["person"]:
+
+        words = person.split()
+
+        if len(words) < 2 or len(words) > 4:
+            continue
+
+        if any(char.isdigit() for char in person):
+            continue
+
+        if any(w.lower() in invalid_words for w in words):
+            continue
+
+        if any(w.lower() in job_words for w in words):
+            continue
+
+        if person.lower() in blacklist:
+            continue
+
+        return person.title()
+
+    # ====================================================
+    # STEP 4
+    # Filename fallback
+    # ====================================================
+
     base = os.path.splitext(filename)[0]
 
     base = re.sub(
-        r"(resume|cv|final|updated|latest)",
+        r"(resume|cv|updated|latest|final)",
         "",
         base,
         flags=re.I
@@ -173,13 +211,15 @@ def extract_name(text, filename):
 
     base = re.sub(r"[_\-.]+", " ", base)
 
+    base = re.sub(r"\d+", "", base)
+
     words = [
         w.capitalize()
         for w in base.split()
         if len(w) > 1
     ]
 
-    if len(words) >= 2:
+    if 2 <= len(words) <= 4:
         return " ".join(words)
 
     return "Unknown"
