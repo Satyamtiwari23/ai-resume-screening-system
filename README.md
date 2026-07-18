@@ -10,7 +10,7 @@ Built as a full-stack project combining Flask, a trained ML resume classifier, N
 
 | | |
 |---|---|
-| 🖥️ Live Demo | (https://ai-resume-screening-system-iv0e.onrender.com/) |
+| 🖥️ Live Demo | https://ai-resume-screening-system-iv0e.onrender.com/ |
 | 💻 GitHub Repo | [Satyamtiwari23/ai-resume-screening-system](https://github.com/Satyamtiwari23/ai-resume-screening-system.git) |
 | 🌐 Portfolio | [satyamtiwari23.github.io/Portfolio](https://satyamtiwari23.github.io/Portfolio) |
 | 💼 LinkedIn | [Satyam Tiwari](https://www.linkedin.com/in/satyam-tiwari-8s5a4t3y8a7m4104/) |
