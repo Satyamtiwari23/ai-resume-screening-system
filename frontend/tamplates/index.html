@@ -9,7 +9,7 @@
 
     <title>AI Resume Screening System</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
 
@@ -814,7 +814,7 @@ SQL"></textarea>
 
     <script src="https://cdn.jsdelivr.net/npm/exceljs/dist/exceljs.min.js"></script>
 
-    <script src="script.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 
 </body>
 

@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 import os
 
@@ -16,7 +16,11 @@ from utils.skills import extract_skills
 from utils.ats import calculate_score
 from utils.resume_analyzer import analyze_resume
 from utils.role_predictor import predict_role
-app = Flask(__name__)
+app = Flask(
+    __name__,
+    template_folder="templates",
+    static_folder="static"
+)
 CORS(app)
 
 UPLOAD_FOLDER = "uploads"
@@ -208,7 +212,7 @@ def process_resume(file, jd_data=None):
 
 @app.route("/")
 def home():
-    return "AI Resume Screening Backend Running"
+    return render_template("index.html")
 
 
 @app.route("/upload", methods=["POST"])
