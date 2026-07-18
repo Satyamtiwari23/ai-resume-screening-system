@@ -2,7 +2,7 @@ import re
 import spacy
 import os
 
-nlp = spacy.load("en_core_web_trf")
+nlp = spacy.load("en_core_web_sm")
 def ai_entities(text):
 
     doc = nlp(text[:5000])
