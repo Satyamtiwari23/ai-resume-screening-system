@@ -33,27 +33,30 @@ Candidates upload a single resume and get instant, personalized feedback.
 ### HR Mode — Job Requirements
 Recruiters upload multiple resumes at once and define the role's requirements (title, department, experience, education, required skills).
 
-![Recruiter Job Requirements](images/recruiter-job-requirements.png)
+<img width="1710" height="1112" alt="recruiter-job-requirements" src="https://github.com/user-attachments/assets/64a10d5d-1a83-4770-9a96-f085d434304e" />
+
 
 ### Resume Processing Timeline
 Every analysis run shows the live pipeline stages — upload, PDF parsing, candidate extraction, skill matching, ATS scoring, report generation.
 
-![Processing Timeline](images/processing-timeline.png)
+<img width="1710" height="1112" alt="processing-timeline" src="https://github.com/user-attachments/assets/8337faf7-87ed-4f9f-9ae3-177d1de41485" />
+
 
 ### Candidate Analysis Report
 Full breakdown per candidate: matched/missing skills, strengths, weaknesses, AI hiring verdict, and auto-generated interview questions.
 
-![Candidate Analysis Report](images/candidate-analysis-report.png)
+![candidate-analysis-report](https://github.com/user-attachments/assets/825e2ad1-b9e4-46e5-832b-4ab5edb0a0bb)
+
 
 ### AI Resume Summary
 An LLM-generated summary of the candidate's profile alongside a downloadable ATS report.
 
-![AI Resume Summary](images/ai-resume-summary.png)
+<img width="2760" height="1999" alt="ai-resume-summary" src="https://github.com/user-attachments/assets/1e15b271-b422-458a-998b-b28007afca84" />
 
 ### Recruiter Dashboard
 Aggregated view for HR: total candidates, average ATS score, top candidate, and a ranked comparison table.
 
-![Recruiter Dashboard](images/recruiter-dashboard.png)
+<img width="2760" height="1999" alt="recruiter-dashboard" src="https://github.com/user-attachments/assets/d51d4709-a5db-4fc4-8e7f-a6af1c0610ea" />
 
 ---
 
