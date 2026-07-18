@@ -175,7 +175,7 @@ async function uploadResume() {
 
     try {
         console.log("Sending request...");
-        const response = await fetch("http://127.0.0.1:5001/upload", {
+        const response = await fetch("/upload", {
             method: "POST",
             body: formData
         });
