@@ -1,0 +1,10 @@
+ai-resume-screening-system
+│
+├── .github
+│     └── workflows
+│           deploy.yml
+│
+├── backend
+├── frontend
+├── ml
+├── model
